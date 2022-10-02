@@ -38,18 +38,19 @@ public class ConsoleMinesweeper {
                     coordinates[1] = Integer.parseInt(line[1]);
                     
                 } catch (NumberFormatException e){
-                    System.out.println("Row " + line[0] + " column " + line[1] + " is an invalid coordinate. Both values must be integers.");
-                    isValid = false;
-                } catch (IndexOutOfBoundsException e){
-                    System.out.println("Need more information. Cannot parse " + line[0] + ".");
+                    try{
+                        System.out.println("Row " + line[0] + " column " + line[1] + " is an invalid coordinate. Both values must be integers.");
+                    } catch (ArrayIndexOutOfBoundsException e2){
+                        System.out.println("Need more information. Cannot parse " + line[0] + ".");
+                    }
                     isValid = false;
                 }
+                br.close();
             } catch(IOException e){
                 e.printStackTrace();
                 isValid = false;
             }
         }
-        
         return coordinates;
     }
 }
