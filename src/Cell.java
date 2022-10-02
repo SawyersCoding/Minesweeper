@@ -1,3 +1,4 @@
+package src;
 public class Cell {
     
     // Keeps track of whether there is a mine in this Cell.
