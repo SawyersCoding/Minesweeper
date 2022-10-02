@@ -21,7 +21,7 @@ public class Game{
     };
 
     public Game(){
-        setBoard(10, 10, 25);
+        setBoard(10, 10, 10);
         gameOver = false;
         gameWon = false;
     }
@@ -64,6 +64,8 @@ public class Game{
 
     public Board getBoard() { return board; }
 
+    public char getCellTag(int row, int col) { return cellTags[row][col]; }
+
     public void setBoard(int width, int height, int percentMines){
         board = new Board(width, height, percentMines);
         makeNewVisited();
@@ -76,6 +78,10 @@ public class Game{
 
     public void setBoardPercentMines(int percentMines){
         setBoard(board.getWidth(), board.getHeight(), percentMines);
+    }
+
+    public boolean isRevealed(int row, int col){
+        return visited[row][col];
     }
 
     private void checkWin(){
