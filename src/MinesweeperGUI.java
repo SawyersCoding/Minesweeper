@@ -7,6 +7,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -93,7 +95,17 @@ public class MinesweeperGUI extends Application {
             for(int j = 0; j < game.getBoard().getWidth(); j++){
                 if(game.isRevealed(i, j)) {
                     buttons[i][j].setDisable(true);
-                    buttons[i][j].setText(String.valueOf(game.getCellTag(i, j)));
+                    if(game.getBoard().getCell(i, j).hasMine()){
+                        ImageView iv = new ImageView();
+                        Image im = FileHandler.getCellGraphic(game.getCellTag(i, j));
+                        iv.minWidth(29);
+                        iv.minHeight(29);
+                        iv.setImage(im);
+                        buttons[i][j].setGraphic(iv);
+                    }
+                    else{
+                        buttons[i][j].setText(String.valueOf(game.getCellTag(i, j)));
+                    }
                 }
             }
         }
